@@ -1,14 +1,21 @@
 {
   "name": "musicdesktop",
   "version": "0.1.0",
+  "author": "your name",
+  "description": "Electron nusic app",
+  "main": "main.js",
   "private": true,
   "dependencies": {
+    "@ant-design/icons": "^4.6.2",
     "@craco/craco": "^6.1.2",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "antd": "^4.15.3",
+    "axios": "^0.21.1",
     "craco-less": "^1.17.1",
+    "electron": "^12.0.5",
+    "nodemon": "^2.0.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router": "^5.2.0",
@@ -20,7 +27,8 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "ele": "yarn run nodemon --ignore ./package.json --exec electron ."
   },
   "eslintConfig": {
     "extends": [
@@ -39,5 +47,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "https://music-api-tau.vercel.app"
 }

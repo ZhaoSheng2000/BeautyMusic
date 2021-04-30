@@ -12,6 +12,5 @@ const App = () => (
       <Redirect to="/login"></Redirect>
     </Switch>
   </BrowserRouter>
-
 );
 export default App;
