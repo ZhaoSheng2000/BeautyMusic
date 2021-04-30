@@ -1,17 +1,21 @@
 import React from 'react'
-import {Form, Input, Button, Card, Radio, message} from 'antd';
+import {Form, Input, Button, Card} from 'antd';
 import {PhoneOutlined, LockOutlined} from '@ant-design/icons';
 
 import { reqPhoneLogin } from '../../api/index'
-const { ipcRenderer } = require('electron')
+
+const {ipcRenderer} = require('electron');
+
 
 export default class Login extends React.Component {
     state = {
         type:"手机号"
     };
+    componentDidMount() {
+        ipcRenderer.send('asynchronous-message', 'ping')      
+  }
     onFinish = (e) => {
         console.log(e)
-        ipcRenderer.send('asynchronous-message', '这是登录成功的状态')
     };
     render() {
         return (

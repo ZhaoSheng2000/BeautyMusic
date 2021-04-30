@@ -1,7 +1,8 @@
 {
   "name": "musicdesktop",
   "version": "0.1.0",
-  "author": "your name",
+  "homepage": ".",
+  "author": "zhaosheng",
   "description": "Electron nusic app",
   "main": "main.js",
   "private": true,
@@ -18,7 +19,6 @@
     "nodemon": "^2.0.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "web-vitals": "^1.0.1"

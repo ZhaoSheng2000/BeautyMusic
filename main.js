@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron').remote
 const path = require('path')
 
 function createWindow() {
@@ -8,8 +8,9 @@ function createWindow() {
         show: false,
         backgroundColor: '#1e1e1e',
         webPreferences: {
-            preload: path.join(__dirname, 'preload.js'),
-            nodeIntegration: true
+            preload: path.join(__dirname, '/preload.js'),
+            nodeIntegration: true,
+            contextIsolation: false
         }
     })
 
@@ -20,29 +21,31 @@ function createWindow() {
     mainWindow.loadURL("http://localhost:3000")
     // Open the DevTools.
     mainWindow.webContents.openDevTools()
-//login    
-    const login = new BrowserWindow({ 
+    //login    
+    const login = new BrowserWindow({
         parent: mainWindow,
         show: false,
         resizable: false,
         width: 500,
-        height:600,
+        height: 600,
         webPreferences: {
-            preload: path.join(__dirname, 'preload.js'),
-            nodeIntegration: true
+           preload: path.join(__dirname, '/preload.js'),
+            // nodeIntegration: true,
+            contextIsolation: false
         }
-     })
-     login.loadURL('http://localhost:3000')
-     login.once('ready-to-show', () => {
+    })
+
+    login.loadURL('http://localhost:3000')
+    login.once('ready-to-show', () => {
         login.show()
-})
-login.webContents.openDevTools()
+    })
+    login.webContents.openDevTools()
 }
 
 ipcMain.on('asynchronous-message', (event, arg) => {
-    console.log('asynchronous-message:'+arg) 
+    console.log('asynchronous-message:' + arg)
     event.reply('asynchronous-reply', 'ipcmain收到消息并且回复给你了的话')
-  })
+})
 
 
 app.whenReady().then(() => {
