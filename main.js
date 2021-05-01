@@ -21,7 +21,7 @@ function createWindow() {
     mainWindow.loadURL("http://localhost:3000")
     // Open the DevTools.
     mainWindow.webContents.openDevTools()
-    //login    
+    //loginWindow
     const login = new BrowserWindow({
         parent: mainWindow,
         show: false,
@@ -35,24 +35,28 @@ function createWindow() {
         }
     })
 
-    login.loadURL('http://localhost:3000')
+    login.loadURL('http://localhost:3000/login')
     login.once('ready-to-show', () => {
         login.show()
     })
     login.webContents.openDevTools()
+    //接收登录窗口登录状态
+    ipcMain.on('login-message', (event, arg) => {
+        console.log('login-message:' + arg)
+        if(arg == 'loginSuccess'){
+            login.close()
+        }
+    })
+    //接收Home.jsx页面的cookie状态
+    ipcMain.on('ifUserCookie',(e,arg)=>{
+        console.log('ifUserCookie:'+arg)
+    })
 }
-
-ipcMain.on('asynchronous-message', (event, arg) => {
-    console.log('asynchronous-message:' + arg)
-    
-    event.reply('asynchronous-reply', 'ipcmain收到消息并且回复给你了的话')
-})
 
 
 app.whenReady().then(() => {
     createWindow()
 })
-
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
         app.quit()

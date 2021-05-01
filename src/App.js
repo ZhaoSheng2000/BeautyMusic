@@ -1,16 +1,16 @@
 import React from 'react';
 import './App.less';
-import { Redirect, Route, Switch, HashRouter } from 'react-router-dom';
+import { Redirect, Route, Switch, HashRouter, BrowserRouter } from 'react-router-dom';
 import Login from './pages/Login/Login'
-import AuthRoute from './pages/AuthRoute/AuthRoute'
 import Detali from './pages/Detail/Detail'
+import Hmoe from './pages/Home/Home'
 const App = () => (
-  <HashRouter>
+  <BrowserRouter>
     <Switch>
       <Route path="/login" component={Login}></Route>
-      <AuthRoute path="/detail" component={Detali}></AuthRoute>
-      <Redirect to="/login"></Redirect>
+      <Route path='/' component={Hmoe}></Route>
+      <Route path="/detail" component={Detali}></Route>
     </Switch>
-  </HashRouter>
+  </BrowserRouter>
 );
 export default App;
