@@ -4,7 +4,7 @@ import {PhoneOutlined, LockOutlined} from '@ant-design/icons';
 
 import { reqPhoneLogin } from '../../api/index'
 
-const {ipcRenderer} = require('electron');
+const { ipcRenderer } = window.require('electron');
 
 
 export default class Login extends React.Component {
@@ -12,7 +12,10 @@ export default class Login extends React.Component {
         type:"手机号"
     };
     componentDidMount() {
-        ipcRenderer.send('asynchronous-message', 'ping')      
+        ipcRenderer.send('asynchronous-message', '这是渲染进程发送给胡锦城的消息')   
+        ipcRenderer.on('asynchronous-reply', (event, arg) => {
+            console.log(arg) 
+          })   
   }
     onFinish = (e) => {
         console.log(e)

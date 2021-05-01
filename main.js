@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron').remote
+const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 
 function createWindow() {
@@ -30,7 +30,7 @@ function createWindow() {
         height: 600,
         webPreferences: {
            preload: path.join(__dirname, '/preload.js'),
-            // nodeIntegration: true,
+            nodeIntegration: true,
             contextIsolation: false
         }
     })
@@ -44,6 +44,7 @@ function createWindow() {
 
 ipcMain.on('asynchronous-message', (event, arg) => {
     console.log('asynchronous-message:' + arg)
+    
     event.reply('asynchronous-reply', 'ipcmain收到消息并且回复给你了的话')
 })
 
