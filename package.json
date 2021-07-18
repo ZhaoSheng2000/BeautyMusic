@@ -16,10 +16,12 @@
     "axios": "^0.21.1",
     "craco-less": "^1.17.1",
     "electron": "^12.0.5",
+    "howler": "^2.2.3",
     "js-cookie": "^2.2.1",
     "nodemon": "^2.0.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-infinite-scroller": "^1.2.4",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "web-vitals": "^1.0.1"
@@ -48,6 +50,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "proxy": "https://music-api-tau.vercel.app"
+  }
 }

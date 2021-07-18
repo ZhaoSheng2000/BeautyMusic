@@ -1,3 +1,14 @@
-import axios from 'axios'
-//phone登录
-export const reqPhoneLogin = ({ phone, password}) =>axios.post('/login/cellphone', { phone, password, timestamp:Date.now() })
+import request from "./request";
+export function defaultGet(url) {
+  return request({
+    url: url,
+    method: "get"
+  });
+}
+export function defaultPost(url,data) {
+  return request({
+    url: url,
+    method: "post",
+    data: data
+  });
+}

@@ -2671,7 +2671,7 @@ axe-core@^4.0.2:
 
 axios@^0.21.1:
   version "0.21.1"
-  resolved "https://registry.npm.taobao.org/axios/download/axios-0.21.1.tgz?cache=0&sync_timestamp=1608609188013&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Faxios%2Fdownload%2Faxios-0.21.1.tgz#22563481962f4d6bde9a76d516ef0e5d3c09b2b8"
+  resolved "https://registry.npm.taobao.org/axios/download/axios-0.21.1.tgz#22563481962f4d6bde9a76d516ef0e5d3c09b2b8"
   integrity sha1-IlY0gZYvTWvemnbVFu8OXTwJsrg=
   dependencies:
     follow-redirects "^1.10.0"
@@ -5875,6 +5875,11 @@ hosted-git-info@^2.1.4:
   version "2.8.9"
   resolved "https://registry.npm.taobao.org/hosted-git-info/download/hosted-git-info-2.8.9.tgz?cache=0&sync_timestamp=1617826545071&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fhosted-git-info%2Fdownload%2Fhosted-git-info-2.8.9.tgz#dffc0bf9a21c02209090f2aa69429e1414daf3f9"
   integrity sha1-3/wL+aIcAiCQkPKqaUKeFBTa8/k=
+
+howler@^2.2.3:
+  version "2.2.3"
+  resolved "https://registry.nlark.com/howler/download/howler-2.2.3.tgz#a2eff9b08b586798e7a2ee17a602a90df28715da"
+  integrity sha1-ou/5sItYZ5jnou4XpgKpDfKHFdo=
 
 hpack.js@^2.1.6:
   version "2.1.6"
@@ -9462,7 +9467,7 @@ prompts@^2.0.1:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.5.8, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.npm.taobao.org/prop-types/download/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha1-UsQedbjIfnK52TYOAga5ncv/psU=
@@ -10051,6 +10056,13 @@ react-error-overlay@^6.0.9:
   version "6.0.9"
   resolved "https://registry.npm.taobao.org/react-error-overlay/download/react-error-overlay-6.0.9.tgz#3c743010c9359608c375ecd6bc76f35d93995b0a"
   integrity sha1-PHQwEMk1lgjDdezWvHbzXZOZWwo=
+
+react-infinite-scroller@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.npm.taobao.org/react-infinite-scroller/download/react-infinite-scroller-1.2.4.tgz#f67eaec4940a4ce6417bebdd6e3433bfc38826e9"
+  integrity sha1-9n6uxJQKTOZBe+vdbjQzv8OIJuk=
+  dependencies:
+    prop-types "^15.5.8"
 
 react-is@^16.12.0, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"
