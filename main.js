@@ -24,7 +24,6 @@ function createWindow() {
     mainWindow.webContents.openDevTools()
 
 
-    
     //loginWindow
     // const login = new BrowserWindow({
     //     parent: mainWindow,

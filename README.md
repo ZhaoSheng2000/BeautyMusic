@@ -1,9 +1,24 @@
-# 一个由react+antd+electron创建的桌面歌词显示播放器
-## 灵感来自 [小米众筹-桌面蓝牙歌词音箱](https://www.ithome.com/0/547/976.htm)
-后端接口使用 [Binaryify-NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi) 提供一键部署到Vercel 
+# BeautyMusic
 
-目前处于灵感开发阶段
+## 一个以颜值为主的桌面音乐播放器
+
+### 特性
+
+- 使用ReactHooks+Antd+Electron开发
+- 网易云官方接口调用
+- 注重颜值
+- 专注播放，无任何其他以外功能
+
+### 接口
+
+API部分来自[Binaryify/NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi)
+
+部署网易云 API，详情参见 [Binaryify/NeteaseCloudMusicApi](https://neteasecloudmusicapi.vercel.app/#/?id=安装) 
+
+已经将将 API 部署到 Vercel
+
+### 部分截图
 
 
-![导图](https://tva1.sinaimg.cn/large/008i3skNly1gpzgts8sfkj31lk0r8778.jpg)
+
 
