@@ -30,40 +30,51 @@ export default function SongListDetail() {
     const [detail, setDetail] = useState([]);
     const [load, setload] = useState([true]);
     const [ids, setIds] = useState([]);
-    const [songList, setSongList] = useState([]);
-    const [curSongList, setCurSongList] = useState([]);
-    const [songid, setSongid] = useState([]);
-    const [songUrl, setSongUrl] = useState([]);
+    const [songList, setSongList] = useState([]);//所有歌曲
+    const [curSongList, setCurSongList] = useState([]); //页面当前显示歌曲
+    const [songid, setSongid] = useState([]); //双击后的歌曲Id
+    const [songUrl, setSongUrl] = useState([]);//双击后的歌曲Url
+    const [ifLoadMore, setIfLoadMore] = useState(false);//控制显示加载更多
+    const [songNum, setSongNum] = useState(20);//初始加载歌曲数量
 
-    const { setPlaySongList,setPlaySong } = useContext(SongContext);
+    const { setPlaySongList, setPlaySong } = useContext(SongContext);
 
-    const loadMore = (
-        <div
-            style={{
-                textAlign: 'center',
-                marginTop: 12,
-                height: 32,
-                lineHeight: '32px',
-            }}
-        >
-            <Button onClick={(e)=>{
-                setCurSongList(songList.slice(0, 100))
-                console.log(curSongList)
+    const loadMore =
+        ifLoadMore ?
+            (
+                <div
+                    style={{
+                        textAlign: 'center',
+                        height: 32,
+                        lineHeight: '32px',
+                        margin: 15,
+                        border: 20
+                    }}
+                >
+                    <Button onClick={() => {
+                        setSongNum(songNum + 20)
+                        console.log(curSongList)
+                    }}>加载更多</Button>
 
-            }}>加载更多</Button>
-        </div>
-    )
-
-
+                </div>
+            ) : null;
 
     //加载更多
-    
+    useEffect(() => {
+        setCurSongList(songList.slice(0, songNum))
+        if (songNum >= songList.length) {
+            setIfLoadMore(false)
+        }
+    }, [songNum]);
+
+
+
+
 
 
     //歌单的详细信息
     useEffect(() => {
         let id = history.location.pathname.slice(16,)
-        console.log(history.location.pathname.slice(16,));
         defaultGet(`/playlist/detail?id=${id}`)
             .then(res => {
                 console.log(res);
@@ -74,39 +85,38 @@ export default function SongListDetail() {
                 ids.forEach(e => {
                     arr.push(e.id)
                 });
-                console.log(arr)//歌单中所有歌曲的id
+                console.log(arr) //歌单中所有歌曲的id
                 defaultGet(`/song/detail?ids=${arr.toString()}`)
                     .then(re => {
-                        console.log(re.songs);
                         setSongList(re.songs)
-                        setCurSongList(re.songs.slice(0, 50))
+                        setCurSongList(re.songs.slice(0, songNum))
+                        setIfLoadMore(true)
                     })
 
             })
     }, []);
-    //获取双击后的歌曲url
+    // 获取双击后的歌曲url
     useEffect(() => {
         // console.log(songid);
-        setPlaySong(songid)
+        // setPlaySong(songid)
         songid.length !== 0 && defaultGet(`/song/url?id=${songid}&realIP=61.158.152.204`)
             .then(res => {
                 console.log(res.data[0]);
                 setSongUrl(res.data[0].url);
-
             })
     }, [songid]);
 
     // 双击播放
-    // useEffect(() => {
-    //     const sound = new Howl({
-    //         src: [songUrl]
-    //     });
-    //     sound.play()
-    //     return () => {
-    //         sound.stop()
-    //     };
-    //     setPlaySong(songid)
-    // }, [songUrl]);
+    useEffect(() => {
+        const sound = new Howl({
+            src: [songUrl]
+        });
+        sound.play()
+        return () => {
+            sound.stop()
+        };
+        setPlaySong(songid)
+    }, [songUrl]);
 
     return (
         <div>
@@ -126,9 +136,11 @@ export default function SongListDetail() {
                                     <Text type="secondary">最后更新于{new Date(detail.updateTime).toLocaleString()} ·  {detail.trackIds.length}首歌 </Text>
                                     <br></br>
                                     <Text type="secondary">{detail.description}</Text>
-                                    <Button onClick={() => {
-                                        setPlaySongList(songList)
+                                    <div style={{textAlign:'center'}}>
+                                    <Button  onClick={() => {
+                                        localStorage.setItem('CurrentList',JSON.stringify(songList))
                                     }}>播放全部 </Button>
+                                    </div>                                  
                                 </Space>
                             </div>
                         </Col>
@@ -148,8 +160,14 @@ export default function SongListDetail() {
                         renderItem={song => (
                             <div className="song" key={song.id}>
                                 <List.Item
-                                    style={{ padding: ' 10px' }}
-                                    onDoubleClick={() => setSongid(song.id)}
+                                    style={{
+                                         padding: '10px 20px',
+                                         }}
+                                    onDoubleClick={() => {
+                                        // setSongid(song.id)
+                                        localStorage.setItem('​song',song.id)
+                                        setPlaySong(song.id)
+                                    }}
                                 >
                                     <List.Item.Meta
                                         avatar={<Avatar shape="square" size={50} src={song.al.picUrl} />}
@@ -167,6 +185,7 @@ export default function SongListDetail() {
                         )}
                     >
                     </List>
+
                 </InfiniteScroll>
 
             </div>

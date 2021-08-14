@@ -13,7 +13,7 @@ export default function Home() {
     const [recomend, setRecomend] = useState([]);
     const [load, setload] = useState([false]);
     useEffect(() => {
-        defaultGet('/personalized?limit=10')
+        defaultGet('/personalized?limit=30')
             .then(res => {
                 setRecomend(res.result)
                 console.log(res.result);

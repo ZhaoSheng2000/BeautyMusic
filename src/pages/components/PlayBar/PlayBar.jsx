@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { StepBackwardFilled, StepForwardFilled, CaretRightOutlined, PauseOutlined } from '@ant-design/icons';
-import { Avatar, Row, Col, Space, Typography } from 'antd';
+import { Avatar, Row, Col, Space, Typography, Divider } from 'antd';
 import Icon from '@ant-design/icons';
 import './playbar.less'
 import { defaultGet } from '../../../api/index'
@@ -8,7 +8,7 @@ import { Howl, Howler } from 'howler';
 
 import { SongContext } from '../../Index/Index'
 
-const { Title, Text } = Typography;
+const { Title, Text, Link } = Typography;
 
 const ListSvg = () => (
     <svg t="1625646859933" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1968" width="20" height="20"><path d="M964.608 234.496c-46.08-52.565333-104.789333-93.696-169.642667-118.784a34.030933 34.030933 0 0 0-46.421333 31.744v420.352a178.005333 178.005333 0 0 0-110.933333-38.741333c-98.816 0-179.2 80.384-179.2 179.2S538.794667 887.466667 637.610667 887.466667s179.2-80.384 179.2-179.2c0-1.877333-0.170667-3.754667-0.341334-5.632 0-1.024 0.341333-1.877333 0.341334-2.901334V201.216c36.181333 20.309333 69.12 46.933333 96.597333 78.165333 12.458667 14.165333 34.133333 15.530667 48.128 3.072 14.165333-12.288 15.530667-33.792 3.072-47.957333zM637.610667 819.2c-61.098667 0-110.933333-49.834667-110.933334-110.933333s49.834667-110.933333 110.933334-110.933334 110.933333 49.834667 110.933333 110.933334-49.834667 110.933333-110.933333 110.933333zM185.344 307.2h392.533333c18.773333 0 34.133333-15.36 34.133334-34.133333s-15.36-34.133333-34.133334-34.133334h-392.533333a34.133333 34.133333 0 1 0 0 68.266667zM424.277333 460.8h-238.933333c-18.773333 0-34.133333 15.36-34.133333 34.133333s15.36 34.133333 34.133333 34.133334h238.933333c18.773333 0 34.133333-15.36 34.133334-34.133334s-15.36-34.133333-34.133334-34.133333zM321.877333 682.666667h-136.533333c-18.773333 0-34.133333 15.36-34.133333 34.133333s15.36 34.133333 34.133333 34.133333h136.533333c18.773333 0 34.133333-15.36 34.133334-34.133333s-15.36-34.133333-34.133334-34.133333z" p-id="1969" fill="#ffffff"></path></svg>
@@ -40,6 +40,9 @@ const Voice3Icon = props => <Icon component={Voice3Svg} {...props} />;
 const Voice4Icon = props => <Icon component={Voice4Svg} {...props} />;
 
 
+
+
+
 export default function PlayBar() {
     const { playSongList, playSong } = useContext(SongContext);
 
@@ -48,13 +51,24 @@ export default function PlayBar() {
     const [urls, seturls] = useState(['']);
     const [songDetail, setSongDetail] = useState([]); //单曲详细img，歌手信息
     const [songUrl, setSongUrl] = useState([]); //单曲url，时长信息
+    const [pause, setPause] = useState(true); //控制播放
+
+    const [song, setSong] = useState([]);      //保存在localStorage里面的当前播放歌曲
+    const [list, setList] = useState([]); //保存在localstorage里面的当前播放列表
+
+    //获取localstorage本地保存的song，list
+    // useEffect(() => {
+    //     let CurrentSong = localStorage["song"];
+    //     let CurrentList = localStorage["CurrentList"];
+    //     CurrentSong !== null && defaultGet(`/song/detail?ids=${CurrentSong}`)
+    //         .then(res => {
+    //             console.log(res.songs[0]);
+    //         })
+    // }, [song, list]);
 
     //获取传回来的所有的歌曲详细信息
     useEffect(() => {
         let ids = [];
-        playSongList.forEach(x => {
-            ids.push(x.id)
-        })
         console.log(ids);
         //只能一个个拿url
         playSongList.length !== 0 && defaultGet(`/song/url?id=${ids.slice(1, 10).toString()}&realIP=61.158.148.71`)
@@ -68,13 +82,11 @@ export default function PlayBar() {
                 });
                 console.log(urls);
                 seturls(urls)
-
-                // const sound = new Howl({
-                //     src: urls,
-                //     autoplay: true,
-                //     volume: 0.5,
-                // });
-                // sound.play()
+                const sound = new Howl({
+                    src: [urls[0]],
+                    autoplay: true,
+                });
+                sound.play()
             })
     }, [playSongList]);
     //根据双击的歌曲id拿详细信息
@@ -93,54 +105,70 @@ export default function PlayBar() {
             .then(res => {
                 console.log(res.data[0]);
                 setSongUrl(res.data[0])
-                
             })
     }, [playSong]);
 
 
-
-
-    // 控制播放
     useEffect(() => {
-       
+        // 单击播放
+        //实例化播放器
         const sound = new Howl({
             src: [songUrl.url],
             autoplay: true,
         });
-        // sound.play()
+        sound.play()
+        setPause(false)
         return () => {
             sound.stop()
-        };
+        }
     }, [songUrl]);
 
 
 
+
     return (
-        <div style={{ position: 'sticky', textAlign: 'center', bottom: 0, left: 0, opacity: 0.95, backgroundColor: '#222326' }}>
+        <div className="animate" style={{ position: 'sticky' }}>
             <div style={{ display: "flex" }}>
                 <Col span={4} offset={1}>
                     <div style={{ width: 300 }}>
                         <Avatar shape="square" size={60} src={songDetail.length === 0 ? '/' : songDetail.al.picUrl} />
                         <Space direction="vertical" style={{ paddingLeft: '10px' }}>
-                            <Title level={4} style={{ float: "left" }}>{songDetail.length === 0 ?'无': songDetail.name}</Title>
-                            {songDetail.length === 0 ? '暂无':songDetail.ar.map((ar, index) => {
-                                return (<Text type="secondary" style={{float:'left'}} key={index}>{ar.name}</Text>
-                                )
-                            })}
+                            <Title level={5} style={{ float: "left" }}>{songDetail.length === 0 ? '暂无播放' : songDetail.name}</Title>
+                            <Space split={<Divider type="vertical" style={{ float: "left" }} />}>
+                                {songDetail.length === 0 ? ' ' : songDetail.ar.map((ar, index) => {
+                                    return <Text type="secondary" key={index}>{ar.name}</Text>
+                                })}
+                            </Space>
                         </Space>
                     </div>
                 </Col>
                 <Col span={11}>
-
-
                     <div style={{ padding: '10px 20px 5px 10px' }} >
-                        <StepBackwardFilled className='myicon' style={{ fontSize: "32px", padding: "5px", margin: '5px' }} />
-                        <CaretRightOutlined className='myicon' style={{ fontSize: "32px", padding: "5px", margin: '5px' }} />
-                        {/* <PauseOutlined className='myicon' style={{ fontSize: "32px", padding: "5px", margin: '5px' }} /> */}
+                        <StepBackwardFilled
+                            className='myicon'
+                            style={{ fontSize: "32px", padding: "5px", margin: '5px' }}
+                            onClick={() => { console.log('1111111'); }}
+                        />
+                        {
+                            pause === true ?
+                                <CaretRightOutlined
+                                    className='myicon'
+                                    style={{ fontSize: "32px", padding: "5px", margin: '5px' }}
+                                    onClick={() => { setPause(false) }}
 
-                        <StepForwardFilled className='myicon' style={{ fontSize: "32px", padding: "5px", margin: '5px' }} />
+                                />
+                                : <PauseOutlined
+                                    className='myicon'
+                                    style={{ fontSize: "32px", padding: "5px", margin: '5px' }}
+                                    onClick={() => { setPause(true) }}
+                                />
+                        }
 
 
+                        <StepForwardFilled
+                            className='myicon' style={{ fontSize: "32px", padding: "5px", margin: '5px' }}
+                            onClick={() => { console.log('444444'); }}
+                        />
 
                     </div>
 
@@ -152,8 +180,10 @@ export default function PlayBar() {
                         <Voice1Icon className='myicon' style={{ padding: "5px", margin: '10px ' }} />
                     </div>
                 </Col>
+
             </div>
         </div>
+
 
 
     );

@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.less';
-import { Redirect, Route, Switch, HashRouter } from 'react-router-dom';
+import {  Route, Switch, HashRouter } from 'react-router-dom';
 import Index from './pages/Index/Index';
 
 const App = () => (
