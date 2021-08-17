@@ -2,7 +2,7 @@ import axios from 'axios'
 // create an axios instance
 const service = axios.create({
   //   baseURL: process.env.VUE_APP_BASE_API, // api 的 base_url
-  baseURL: 'https://music-api-tau.vercel.app',
+  baseURL: 'http://localhost:4000',
   // withCredentials: true, // 跨域请求时发送 cookies
   timeout: 60000, // request timeout
   headers: {

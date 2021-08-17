@@ -1,4 +1,4 @@
-.bg {
+.container {
   background-color: #222222;
 }
 .myspan:hover {
@@ -6,4 +6,7 @@
   box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.4);
   transition: 0.3s;
   background-color: #323232;
+}
+.ant-menu {
+  background: inherit;
 }

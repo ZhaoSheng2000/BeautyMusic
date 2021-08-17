@@ -1,3 +1,43 @@
-.bg {
-  background-color: #222222;
+.mycard:hover {
+  border-radius: 19px;
+  box-shadow: -9px -9px 18px #645d5d, 9px 9px 18px #aea3a3;
+}
+.foryou-img {
+  position: relative;
+  width: 550px;
+  height: 200px;
+  border-radius: 15px;
+  object-fit: cover;
+  filter: blur(2px);
+}
+.foryou-img:hover {
+  border-radius: 19px;
+  background: #898080;
+  box-shadow: -9px -9px 18px #645d5d, 9px 9px 18px #aea3a3;
+  filter: blur(0px);
+}
+.foryou-text {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  font-size: 64px;
+  line-height: 86px;
+}
+.yiren-img {
+  width: 170px;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 50%;
+  background: #222222;
+  box-shadow: -15px -15px 11px #1d1d1d, 15px 15px 11px #272727;
+}
+.yiren-img:hover {
+  border-radius: 50%;
+  background: #222222;
+  box-shadow: -18px -18px 36px #0e0e0e, 18px 18px 36px #363636;
+}
+.yiren-text {
+  color: #ffffff;
+  padding: 15px;
+  font-size: 16px;
 }

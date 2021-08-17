@@ -24,11 +24,11 @@ function ms2m(time) {
 
 }
 
-export default function SongListDetail() {
+export default function SongListDetail(props) {
     const history = useHistory();
     // const id = history.location.state.id;
     const [detail, setDetail] = useState([]);
-    const [load, setload] = useState([true]);
+    const [load, setload] = useState(true);
     const [ids, setIds] = useState([]);
     const [songList, setSongList] = useState([]);//所有歌曲
     const [curSongList, setCurSongList] = useState([]); //页面当前显示歌曲
@@ -96,27 +96,27 @@ export default function SongListDetail() {
             })
     }, []);
     // 获取双击后的歌曲url
-    useEffect(() => {
-        // console.log(songid);
-        // setPlaySong(songid)
-        songid.length !== 0 && defaultGet(`/song/url?id=${songid}&realIP=61.158.152.204`)
-            .then(res => {
-                console.log(res.data[0]);
-                setSongUrl(res.data[0].url);
-            })
-    }, [songid]);
+    // useEffect(() => {
+    //     // console.log(songid);
+    //     // setPlaySong(songid)
+    //     songid.length !== 0 && defaultGet(`/song/url?id=${songid}&realIP=61.158.152.204`)
+    //         .then(res => {
+    //             console.log(res.data[0]);
+    //             setSongUrl(res.data[0].url);
+    //         })
+    // }, [songid]);
 
     // 双击播放
-    useEffect(() => {
-        const sound = new Howl({
-            src: [songUrl]
-        });
-        sound.play()
-        return () => {
-            sound.stop()
-        };
-        setPlaySong(songid)
-    }, [songUrl]);
+    // useEffect(() => {
+    //     const sound = new Howl({
+    //         src: [songUrl]
+    //     });
+    //     sound.play()
+    //     return () => {
+    //         sound.stop()
+    //     };
+    //     setPlaySong(songid)
+    // }, [songUrl]);
 
     return (
         <div>
@@ -137,9 +137,6 @@ export default function SongListDetail() {
                                     <br></br>
                                     <Text type="secondary">{detail.description}</Text>
                                     <div style={{textAlign:'center'}}>
-                                    <Button  onClick={() => {
-                                        localStorage.setItem('CurrentList',JSON.stringify(songList))
-                                    }}>播放全部 </Button>
                                     </div>                                  
                                 </Space>
                             </div>
@@ -161,7 +158,7 @@ export default function SongListDetail() {
                             <div className="song" key={song.id}>
                                 <List.Item
                                     style={{
-                                         padding: '10px 20px',
+                                         margin: '10px 20px',
                                          }}
                                     onDoubleClick={() => {
                                         // setSongid(song.id)
