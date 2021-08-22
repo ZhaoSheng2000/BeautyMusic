@@ -12,6 +12,7 @@ import SongListDetail from '../SongListDetali/SongListDetail';
 import PlayBar from '../components/PlayBar/PlayBar';
 import artistDetail from '../artistDetail/artistDetail';
 import albumDetail from '../albumDetail/albumDetail';
+import newAlbum from '../newAlbum/newAlbum';
 
 const { Header, Content } = Layout;
 const { Search } = Input;
@@ -64,13 +65,13 @@ export default function Index() {
                     </span>
                     <Menu onClick={(e) => setCurrent(e.key)} selectedKeys={[current]} mode="horizontal" style={{ textAlign: 'center',paddingLeft:"200px" }} >
                         <Menu.Item key='0'>
-                            <Link to='/'>首页</Link>
+                            <Link to='/'><span style={{fontWeight:700,fontSize:18}}>首页</span></Link>
                         </Menu.Item>
                         <Menu.Item key='1'>
-                            <Link to='/explore?tab=全部'>发现</Link>
+                            <Link to='/explore?tab=全部'><span style={{fontWeight:700,fontSize:18}}>发现</span> </Link>
                         </Menu.Item>
                         <Menu.Item key='2'>
-                            <Link to="/library">音乐库</Link>
+                            <Link to="/library"><span style={{fontWeight:700,fontSize:18}}>音乐库</span></Link>
                         </Menu.Item>
                         <span>
                             <Search placeholder="搜索" onSearch={(value) => setSearch(value)} style={{ width: 200, float: 'right', paddingTop: '20px' }} />
@@ -84,6 +85,7 @@ export default function Index() {
                         <Route path='/library' component={Library} />
                         <Route path='/songlistdetail/:id' component={SongListDetail} />
                         <Route path='/artist/:id' component={artistDetail} />
+                        <Route path='/newalbum' component={newAlbum} />
                         <Route path='/album/:id' component={albumDetail} />
                         <Route path='/' component={Home} />
 

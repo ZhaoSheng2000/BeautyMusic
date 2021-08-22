@@ -168,7 +168,7 @@ export default function SongListDetail(props) {
                                 >
                                     <List.Item.Meta
                                         avatar={<Avatar shape="square" size={50} src={song.al.picUrl} />}
-                                        title={<a href="#">{song.name}</a>}
+                                        title={song.name}
                                         description={song.ar.map((auther, index) => (
                                             <span key={index}>{auther.name} </span>
                                         )

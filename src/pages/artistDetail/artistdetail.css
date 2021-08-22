@@ -1,0 +1,75 @@
+
+.head{
+    width: 300px;
+    height: 300px;
+    margin-top: 20px;
+}
+.head .artist-img{
+    border-radius: 50%;
+    width: 248px;
+    height: 248px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+.name{
+    font-size: 56px;
+    font-weight: 700;
+}
+.artist{
+    font-size: 18px;
+    opacity: .88;
+    margin-top: 24px;
+}
+.statistics{
+    font-size: 14px;
+    opacity: .68;
+    margin-top: 2px;
+}
+.description{
+    margin-top: 24px;
+    opacity: .68;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+.hot-song{
+    padding-top: 46px;
+}
+.section-title{
+    font-weight: 600;
+    font-size: 22px;
+    opacity: .88;
+    padding-bottom: 20px;
+}
+.tracklist-img{
+    width: 36px;
+    height: 36px;
+    margin-right: 14px;
+    border-radius: 6px;
+}
+.title-and-artist{
+    display: flex;
+    flex: 1;
+}
+.song-container{
+display: flex;
+flex-direction: column;
+}
+.tracklist-title{
+    font-size: 16px;
+    font-weight: 600;
+    /* width: 220px; */
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.tracklist-artist{
+    font-style: 12px;
+    padding-top: 2px;
+    opacity: .68;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}

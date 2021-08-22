@@ -52,7 +52,7 @@ export default function Home() {
     // 热门歌手
     useEffect(() => {
         defaultGet('/top/artists?limit=12').then(res => {
-            // console.log(res.artists);
+            console.log(res.artists);
             setArtists(res.artists)
         })
     }, []);
@@ -61,7 +61,7 @@ export default function Home() {
     useEffect(() => {
         defaultGet('/album/newest').then(res => {
             console.log(res.albums);
-            setNewAlbum(res.albums.slice(0,10))
+            setNewAlbum(res.albums.slice(0, 10))
         })
     }, []);
     return (
@@ -69,7 +69,12 @@ export default function Home() {
             {/* 推荐歌单 */}
             <div >
                 <Skeleton loading={load} active>
-                    <h1 style={{ padding: "15px 15px 0px 20px" }}>推荐歌单 </h1>
+                    <div style={{ padding: "15px 15px 12px 20px" }}>
+                        <span style={{ fontSize: '28px', fontWeight: 700 }}>推荐歌单</span>
+                        <Link to='/explore?tab=推荐'>
+                            <span style={{ float: 'right', fontSize: '13px', fontWeight: '600', paddingTop: 20 }}>查看更多</span>
+                        </Link>
+                    </div>
                     <Row gutter={[32, 32]} justify='space-around' >
                         {!recomend ? '加载中' : recomend.map((rec, index) => (
                             <Link to={`/songlistdetail/${rec.id}`} key={index}>
@@ -149,7 +154,7 @@ export default function Home() {
             </div>
             {/* 热门歌手 */}
             <div >
-                <h1 style={{ padding: "50px 15px 0px 20px" }}>热门歌手 </h1>
+                <h1 style={{ padding: "50px 15px 0px 20px" }}>热门艺人 </h1>
                 <Skeleton loading={load} active>
                     <Row gutter={[16, 32]} justify='space-around' >
                         {
@@ -177,31 +182,36 @@ export default function Home() {
             {/* 新专速递 */}
             <div >
                 <Skeleton loading={load} active>
-                    <h1 style={{ padding: "50px 15px 0px 20px" }}>新专速递 </h1>
+                    <div style={{ padding: "30px 15px 12px 20px" }}>
+                        <span style={{ fontSize: '28px', fontWeight: 700 }}>新专速递</span>
+                        <Link to='/newalbum'>
+                        <span style={{ float: 'right', fontSize: '13px', fontWeight: '600', paddingTop: 20 }}>查看更多</span>
+                        </Link>
+                    </div>
                     <Row gutter={[32, 32]} justify='space-around' >
                         {newAlbum.map((rec, index) => (
                             <Link to={`/album/${rec.id}`} key={index}>
-                               <Col span={{ xs: 24, sm: 4, md: 4 }} key={index}>
-                                <div key={index}>
-                                    <Card
-                                        key={index}
-                                        bordered={false}
-                                        // hoverable
-                                        style={{ borderRadius: '15px', backgroundColor: '#222222' }}
-                                        cover={
-                                            <img src={rec.picUrl} style={{ width: 200, height: 200, borderRadius: '15px' }}
-                                                className="mycard"
-                                            />}
-                                    >
-                                        <div style={{ wordBreak: 'break-all', whiteSpace: 'normal', width: '150px' }}>
-                                            <Title level={5}>{rec.name}</Title>
-                                            <Text type="secondary">{rec.copywriter}</Text>
-                                        </div>
-                                    </Card>
-                                </div>
-                            </Col>
+                                <Col span={{ xs: 24, sm: 4, md: 4 }} key={index}>
+                                    <div key={index}>
+                                        <Card
+                                            key={index}
+                                            bordered={false}
+                                            // hoverable
+                                            style={{ borderRadius: '15px', backgroundColor: '#222222' }}
+                                            cover={
+                                                <img src={rec.blurPicUrl} style={{ width: 200, height: 200, borderRadius: '15px' }}
+                                                    className="mycard"
+                                                />}
+                                        >
+                                            <div style={{ wordBreak: 'break-all', whiteSpace: 'normal', width: '150px' }}>
+                                                <Title level={5}>{rec.name}</Title>
+                                                <Text type="secondary">{rec.copywriter}</Text>
+                                            </div>
+                                        </Card>
+                                    </div>
+                                </Col>
                             </Link>
-                         
+
                         ))}
                     </Row>
                 </Skeleton>
@@ -209,7 +219,12 @@ export default function Home() {
             {/* 排行榜 */}
             <div >
                 <Skeleton loading={load} active>
-                    <h1 style={{ padding: "50px 15px 0px 20px" }}>排行榜 </h1>
+                    <div style={{ padding: "30px 15px 12px 20px" }}>
+                        <span style={{ fontSize: '28px', fontWeight: 700 }}>排行榜</span>
+                        <Link to='/explore?tab=排行'>
+                        <span style={{ float: 'right', fontSize: '13px', fontWeight: '600', paddingTop: 20 }}>查看更多</span>
+                        </Link>
+                    </div>
                     <Row gutter={[32, 32]} justify='space-around' >
                         {!toplist ? '加载中' : toplist.map((top, index) => (
                             <Link to={`/songlistdetail/${top.id}`} key={index}>
