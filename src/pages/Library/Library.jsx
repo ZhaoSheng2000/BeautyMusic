@@ -1,8 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom';
+import { defaultGet } from '../../api';
 
+
+import './library.css'
 
 export default function Library() {
 
+    const [userInfo, setUserInfo] = useState([]);
+
+    useEffect(() => {
+        defaultGet
+    }, []);
 
     return (
          <div>

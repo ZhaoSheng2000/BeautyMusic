@@ -130,14 +130,12 @@ export default function PlayBar() {
         <div className="animate" style={{ position: 'sticky' }}>
             <div style={{ display: "flex" }}>
                 <Col span={8} >
-                    <div style={{float:'left',paddingLeft:'100px'}}>
+                    <div style={{ float: 'left', paddingLeft: '100px' }}>
                         <Avatar shape="square" size={60} src={songDetail.length === 0 ? '/' : songDetail.al.picUrl} />
                         <Space direction="vertical" style={{ padding: '5px 0 0 10px' }}>
                             <Title level={5} style={{ float: "left" }}>{songDetail.length === 0 ? '暂无播放' : songDetail.name}</Title>
                             <Space split={<Divider type="vertical" style={{ float: "left" }} />}>
-                                {songDetail.length === 0 ? ' ' : songDetail.ar.map((ar, index) => {
-                                    return <Text type="secondary" style={{fontSize:'12px'}} key={index}>{ar.name}</Text>
-                                })}
+                                {songDetail.length === 0 ? ' ' : Array.from(songDetail.ar, ({ name }) => name).join(',')}
                             </Space>
                         </Space>
                     </div>

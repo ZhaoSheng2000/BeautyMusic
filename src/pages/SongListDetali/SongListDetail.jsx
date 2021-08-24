@@ -135,7 +135,7 @@ export default function SongListDetail(props) {
                                     <Title level={4}>By {detail.creator.nickname}</Title>
                                     <Text type="secondary">最后更新于{new Date(detail.updateTime).toLocaleString()} ·  {detail.trackIds.length}首歌 </Text>
                                     <br></br>
-                                    <Text type="secondary">{detail.description}</Text>
+                                    <div className='desc'>{detail.description}</div>
                                     <div style={{textAlign:'center'}}>
                                     </div>                                  
                                 </Space>
@@ -162,7 +162,7 @@ export default function SongListDetail(props) {
                                          }}
                                     onDoubleClick={() => {
                                         // setSongid(song.id)
-                                        localStorage.setItem('​song',song.id)
+                                        // localStorage.setItem('​song',song.id)
                                         setPlaySong(song.id)
                                     }}
                                 >
@@ -170,7 +170,7 @@ export default function SongListDetail(props) {
                                         avatar={<Avatar shape="square" size={50} src={song.al.picUrl} />}
                                         title={song.name}
                                         description={song.ar.map((auther, index) => (
-                                            <span key={index}>{auther.name} </span>
+                                            <span key={index}>{auther.name}</span>
                                         )
                                         )}
                                     />

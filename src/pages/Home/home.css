@@ -8,13 +8,11 @@
   height: 200px;
   border-radius: 15px;
   object-fit: cover;
-  filter: blur(2px);
 }
 .foryou-img:hover {
   border-radius: 19px;
   background: #898080;
   box-shadow: -9px -9px 18px #645d5d, 9px 9px 18px #aea3a3;
-  filter: blur(0px);
 }
 .foryou-text {
   position: absolute;

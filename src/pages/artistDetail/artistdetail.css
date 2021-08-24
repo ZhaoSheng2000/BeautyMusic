@@ -43,33 +43,53 @@
     opacity: .88;
     padding-bottom: 20px;
 }
+.songlist{
+    padding: 5px 8px;
+}
+.songlist:hover{
+    border-radius: 6px;
+    background: #372f2f;
+
+}
 .tracklist-img{
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     margin-right: 14px;
     border-radius: 6px;
-}
-.title-and-artist{
-    display: flex;
-    flex: 1;
-}
-.song-container{
-display: flex;
-flex-direction: column;
+    margin-top: 4px;
 }
 .tracklist-title{
     font-size: 16px;
     font-weight: 600;
-    /* width: 220px; */
     overflow: hidden;
     text-overflow:ellipsis;
     white-space: nowrap;
 }
 .tracklist-artist{
     font-style: 12px;
-    padding-top: 2px;
     opacity: .68;
     overflow: hidden;
     text-overflow:ellipsis;
     white-space: nowrap;
 }
+.album-box{
+    padding-top: 60px;
+}
+.album-title{
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    word-break: break-all;
+}
+.album-text{
+    font-size: 12px;
+    line-height: 18px;
+    opacity: .68;
+    word-break: break-word;
+}
+
+.album-card:hover{
+    border-radius: 15px;
+    box-shadow:  -9px -9px 18px #645d5d,
+                 9px 9px 18px #aea3a3;
+  }

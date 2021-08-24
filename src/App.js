@@ -6,7 +6,6 @@ import Index from './pages/Index/Index';
 const App = () => (
   <HashRouter>
     <Switch>
-      {/* <Route path="/login" component={Login}></Route> */}
       <Route path='/' component={Index} />
     </Switch>
   </HashRouter>

@@ -164,7 +164,7 @@ export default function Home() {
                                         <div key={index} style={{ textAlign: 'center' }}>
                                             <div>
                                                 <img
-                                                    src={item.img1v1Url}
+                                                    src={`${item.img1v1Url}?param=200y200`}
                                                     className="yiren-img"
                                                 />
                                                 <div className="yiren-text">
@@ -199,7 +199,7 @@ export default function Home() {
                                             // hoverable
                                             style={{ borderRadius: '15px', backgroundColor: '#222222' }}
                                             cover={
-                                                <img src={rec.blurPicUrl} style={{ width: 200, height: 200, borderRadius: '15px' }}
+                                                <img src={`${rec.blurPicUrl}?param=300y300`} style={{ width: 200, height: 200, borderRadius: '15px' }}
                                                     className="mycard"
                                                 />}
                                         >
