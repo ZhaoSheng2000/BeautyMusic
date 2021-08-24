@@ -30,11 +30,11 @@ export default function Login(props) {
         }
         if (status.code === 803) {
             localStorage.setItem('musicId', status.cookie);
-            
+
             setMessage('登录成功，正在跳转！')
             history.goBack();
         }
-    }, [key]);
+    }, []);
 
     useEffect(() => {
         const timer = setInterval(() => {
