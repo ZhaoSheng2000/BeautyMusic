@@ -1,0 +1,23 @@
+.topimg{
+    position: relative;
+    object-fit: cover;
+    height: 205px;
+    width: 370px;
+    max-width: 100%;
+    margin-right: 10px;
+    border-radius: 15px;
+    margin-top: 8px;
+    z-index: 0;
+    filter: blur(1px);
+
+}
+.like-text{
+    font-size: 28px;
+    font-weight: 800;
+    color: #bd3b32;
+    position: absolute;
+    top:75%;
+    left: 5%;
+    transform: rotateX(-50%), translateY(-50%);
+    z-index: 1;
+}
